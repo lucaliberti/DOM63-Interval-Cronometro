@@ -19,13 +19,29 @@ let barLength=1;
 function startCounter(){
 
   if (typeof(myInterval) != "undefined") { return ; }
-  // continua tu
+    
+  myInterval=setInterval( conteggioFunc , 1000);
+  let domNumeri_lst=document.querySelectorAll('.digit')
+  let domNumeri_arr= Array.from( domNumeri_lst ) 
+  for ( let i=0 ; i< domNumeri_arr.length ; i++ ) {
+    domNumeri_arr[i].style.backgroundColor="blue"
+  }
+  //domBar.style.width="10px";
+
 }
 
 function stopCounter(){
 
   if (typeof(myInterval) == "undefined") { return ; }
-  // continua tu
+  
+  clearInterval(myInterval);
+  myInterval=undefined;
+
+  let domNumeri_lst=document.querySelectorAll('.digit')
+  let domNumeri_arr= Array.from( domNumeri_lst ) 
+  for ( let i=0 ; i< domNumeri_arr.length ; i++ ) {
+    domNumeri_arr[i].style.backgroundColor="gray"
+  }
 }
 
 function conteggioFunc(){
@@ -34,8 +50,17 @@ function conteggioFunc(){
     second=0
     minute++
   }
-   // continua tu
-   console.log("tic")
+  if (minute >= 60) {
+    minute=0
+    hour++
+  }
+
+  barLength++;
+  domSecond.innerText=second
+  domMinute.innerText=minute
+  domHour.innerText=hour
+  domBar.style.width=barLength+"px";
+  console.log("tic")
 }
 
  
